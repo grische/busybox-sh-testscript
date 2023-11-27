@@ -1,0 +1,14 @@
+FROM centos
+
+RUN cd /etc/yum.repos.d/
+RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
+RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+
+# RUN dnf makecache
+RUN dnf upgrade -y libdnf
+RUN dnf install -y epel-next-release
+RUN dnf install -y busybox
+
+ADD busybox-sh-testscript.sh /
+
+ENTRYPOINT [ "busybox", "sh", "/busybox-sh-testscript.sh" ]

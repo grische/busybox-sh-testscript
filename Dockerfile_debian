@@ -1,0 +1,9 @@
+FROM debian
+
+RUN apt-get update
+RUN apt-get install -y busybox
+
+ADD busybox-sh-testscript.sh /
+RUN chmod +x /busybox-sh-testscript.sh
+
+ENTRYPOINT [ "/busybox-sh-testscript.sh" ]

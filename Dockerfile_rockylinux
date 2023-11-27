@@ -1,0 +1,8 @@
+FROM rockylinux:9.2
+
+RUN dnf install -y epel-release
+RUN dnf install -y busybox
+
+ADD busybox-sh-testscript.sh /
+
+ENTRYPOINT [ "busybox", "sh", "/busybox-sh-testscript.sh" ]

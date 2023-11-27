@@ -1,0 +1,9 @@
+FROM archlinux
+
+RUN pacman -Sy
+RUN pacman -S --noconfirm busybox
+
+ADD busybox-sh-testscript.sh /
+RUN chmod +x /busybox-sh-testscript.sh
+
+ENTRYPOINT [ "/busybox-sh-testscript.sh" ]

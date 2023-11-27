@@ -1,0 +1,7 @@
+FROM fedora
+
+RUN yum install -y busybox
+
+ADD busybox-sh-testscript.sh /
+
+ENTRYPOINT [ "busybox", "sh", "/busybox-sh-testscript.sh" ]
